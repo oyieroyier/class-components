@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
 
 export class State extends Component {
-	// const [goOut, setGoOut] = React.useState(second)
-
+	/**
+	 	* A class component with state will ALWAYS save state in a class
+	 
+	 	* instance variable called `state`, which will always be an object.
+	 
+		* The individual values you save in state will be properties on the `state` object.
+	 
+		* The simplest (and more modern) way to declare new state in a class component is to just use a "class field" declaring state as an object, like you see below.
+	 
+		* Then, throughout the rest of the component (e.g. inside the render method) you can access that state with `this.state.<yourPropertyHere>`
+	 
+	 */
 	state = {
 		goOut: 'Yes',
 	};
 
-	toggleGoOut() {
-		setGoOut((prevState) => {
+	/*
+	
+	 Any class methods you create that need to call the `this.setState` method (which is available to our component because we're extending React.Component) should be declared as an arrow function.
+	 
+	*/
+	toggleGoOut = () => {
+		this.setState((prevState) => {
 			return prevState === 'Yes' ? 'No' : 'Yes';
 		});
-	}
+	};
 	render() {
 		return (
 			<div className="state">

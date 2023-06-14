@@ -20,7 +20,7 @@ export default App;
 ```
 
 - Class component:
-  You can either destructure `Component` from the React object like this:
+  You can either destructure `Component` from the React class like this:
 
 ```jsx
 import React, { Component } from 'react';
@@ -90,12 +90,8 @@ import { useState } from 'react';
 
 const State = () => {
 	const [goOut, setGoOut] = useState('Yes');
-	
-	return (
-	<div>
-		{/* Rest of the component */}
-	</div>
-	);
+
+	return <div>{/* Rest of the component */}</div>;
 };
 
 export default State;
@@ -103,13 +99,14 @@ export default State;
 
 - Class component
   State in class components are always objects and every data we add will be a property on that object
+
   The object **MUST** also be called `state`.
 
 ```jsx
 import React, { Component } from 'react';
 
 export class State extends Component {
-	// This is hoe to declare a state in class components
+	// This is how to declare a state in class components
 	state = {
 		goOut: 'Yes',
 	};
@@ -126,3 +123,39 @@ export class State extends Component {
 
 export default State;
 ```
+
+## Declaring a state setter function in Class components:
+
+The example above on setting state in Function components covers the state variable, initial state value, and state setter in one line of code. In class components, things are a it different.
+
+The state setter is inside the `Component` class er extend from React.
+To use it:
+
+1. Make sure your class method is an arrow function:
+
+```jsx
+// WRONG
+toggleGoOut() {
+	// The method for changing state goes in here
+	}
+
+// CORRECT
+toggleGoOut = () => {
+	// The method for changing state goes in here
+	}
+
+```
+
+2. The setter method for changing state is called `setState` in class components. Call it inside your method and pass the new state into it either as a value or as an arrow function.
+
+```jsx
+toggleGoOut = () => {
+	this.setState((prevState) => {
+		return {
+			goOut: prevState.goOut === 'Yes' ? 'No' : 'Yes',
+		};
+	});
+};
+```
+
+More notes inside the `State.jsx` component in the `/src` folder.
