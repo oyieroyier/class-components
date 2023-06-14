@@ -79,3 +79,50 @@ export default class App extends React.Component {
 	}
 }
 ```
+
+## Declaring state in Function components vs in Class components
+
+- Function Component
+  State in function components can be of any value; booleans, a string, an array, a number etc.
+
+```jsx
+import { useState } from 'react';
+
+const State = () => {
+	const [goOut, setGoOut] = useState('Yes');
+	
+	return (
+	<div>
+		{/* Rest of the component */}
+	</div>
+	);
+};
+
+export default State;
+```
+
+- Class component
+  State in class components are always objects and every data we add will be a property on that object
+  The object **MUST** also be called `state`.
+
+```jsx
+import React, { Component } from 'react';
+
+export class State extends Component {
+	// This is hoe to declare a state in class components
+	state = {
+		goOut: 'Yes',
+	};
+
+	toggleGoOut() {
+	// The function for changing state goes in here
+	}
+	render() {
+		return (
+			// Rest of the component
+		)
+	}
+}
+
+export default State;
+```
