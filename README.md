@@ -159,3 +159,45 @@ toggleGoOut = () => {
 ```
 
 More notes inside the `State.jsx` component in the `/src` folder.
+
+## Lifecycle Methods
+
+- Mounting phase => `render()` and `componentDidMount()`
+- Updating phase => `render()` and `componentDidUpdate()`
+- Unmounting phase => `componentWillUnmount()`
+
+### i. `render()` method
+
+- Is used to "paint" elements on the screen.
+- Called when components first mount or when props change.
+
+### ii. `componentDidMount()` method
+
+- Added to class-based components and whatever code is put inside it is code that will run immediately after the very first render of the component.
+- Runs every refresh too.
+
+```jsx
+import React from 'react';
+
+export default class App extends React.Component {
+	componentDidMount() {
+		console.log('componentDidMount');
+	}
+
+	render() {
+		console.log('render');
+		return <h1>Hello</h1>;
+	}
+}
+
+/*
+
+Console:
+$ render
+$ componentDidMount
+
+// render always runs first then the component mounts.
+*/
+```
+
+Works like useEffect
